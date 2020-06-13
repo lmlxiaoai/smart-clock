@@ -1,0 +1,53 @@
+/* pages/play/play.wxss */
+.container{
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+/* cell */
+.item {
+  width: 90%;
+  height:200rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*margin-top: 30rpx;*/
+  border-radius: 40rpx;
+  /*background: -webkit-linear-gradient(left,#F3904F,#3B4371);*/
+}
+/* cell 产品图 */
+.iconImageView {
+  width: 200rpx;
+  height: 200rpx;
+  top: 50rpx;
+  left: 40rpx;
+  /* background-color:orange; */
+  position: absolute;
+}
+.timeview {
+  top:50rpx;
+  left:60rpx;
+  height: 50rpx;
+  position: absolute;
+}
+.productNameText {
+  font-size: 50rpx;
+  display: flex;
+  color: white;
+}
+.buttonview {
+  right: 30rpx;
+  top: 50rpx;
+  position: absolute;
+}
+.button {
+  height: 80rpx;
+  width: 80rpx;
+  margin-left: 20rpx;
+}
+
+page {
+  background-color: #4a4a4a;
+}

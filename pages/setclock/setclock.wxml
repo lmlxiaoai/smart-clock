@@ -1,0 +1,23 @@
+<!--setclock.wxml-->
+<view class="container">
+  <image class="background" src='/img/am.jpg'></image>
+
+  <view class="deleteview">
+    <image class="button" hidden="{{ishidden}}" src="/img/delete.png" bindtap="deleteAction" ></image>
+  </view>
+  <picker mode="time" class="time" value="{{Time}}" start="00:00" end="23:59" bindchange="setTimeAction">
+    <view class="picker">{{Time}}</view>
+  </picker>
+  <view class="page-section">
+      <radio-group class="choose" bindchange="radioChange">
+        <label  wx:for="{{items}}" wx:key="{{item.value}}" class="radio">
+          <view class="itemname">{{item.name}}</view>
+          <radio class="radiobutton" value="{{item.value}}" checked="true"/>
+        </label>
+      </radio-group>
+  </view>
+
+  <button class="circle-float" bindtap="submitAction"> 
+    <image class="buttonimage" src="/img/check.png"></image>
+  </button>
+</view>

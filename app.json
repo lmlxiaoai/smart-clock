@@ -1,13 +1,39 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/clock/clock",
+    "pages/play/play",
+    "pages/setclock/setclock"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "智能闹钟",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#4db900",
+    "backgroundColor": "#fbfbfd",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/home.png",
+        "selectedIconPath": "img/home-fill.png"
+      },
+      {
+        "pagePath": "pages/clock/clock",
+        "iconPath": "img/clock.png",
+        "selectedIconPath": "img/time-circle-fill.png"
+      },
+      {
+        "pagePath": "pages/play/play",
+        "iconPath": "img/music.png",
+        "selectedIconPath": "img/play-circle-fill.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -1,5 +1,25 @@
 <!--index.wxml-->
 <view class="container">
+<image class="background" src='/img/am.jpg'></image>
+<picker mode="time" class="time" value="{{time}}" start="00:00" end="23:59" bindchange="setTimeAction">
+    <view class="picker">
+      {{time}}
+    </view>
+  </picker>
+  <scroll-view scroll-y="true" style="height: 700rpx;margin-top:200rpx" >
+    <block wx:for="{{items}}">
+ <!-- 每个cell -->
+  <view class='item' wx:if="{{item.isOpen}}" wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" >
+    <view class="timeview">
+    <text class='productNameText'>{{item.Time}}</text>
+    </view>
+
+<switch class="switch" color="#E8CC5E" checked="{{item.isOpen}}" data-item= "{{item}}" data-id="{{item.ID}}" bindchange="Change"/>
+
+  </view>
+ </block>
+  </scroll-view>
+<!--
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -11,4 +31,5 @@
     <button bindtap="connectMqtt">连接</button>
     <text class="user-motto">{{motto}}</text>
   </view>
+  -->
 </view>

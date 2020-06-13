@@ -1,0 +1,18 @@
+<!-- clock.wxml -->
+<view class='container'>
+ <block wx:for="{{items}}">
+ <!-- 每个cell -->
+  <view class='item' wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" >
+    <view class="timeview">
+    <text class='productNameText'>{{item.Music}}</text>
+    </view>
+    <view class="buttonview">
+      <image wx:if="{{item.isPlay}}" class="button" src="/img/time-out.png" bindtap="playAction" data-item="{{item}}" data-id="{{item.ID}}"></image>
+      <image wx:else class="button" src="/img/play.png" bindtap="playAction" data-item="{{item}}" data-id="{{item.ID}}"></image>
+      <image wx:if="{{item.ischoose}}" class="button" src="/img/check-circle-fill.png" bindtap="chooseAction" data-item="{{item}}" data-id="{{item.ID}}"></image>
+      <image wx:else class="button" src="/img/check-circle.png" bindtap="chooseAction" data-item="{{item}}" data-id="{{item.ID}}"></image>
+    </view>
+  </view>
+ </block>
+
+</view>

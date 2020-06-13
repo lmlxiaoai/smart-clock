@@ -1,0 +1,68 @@
+/* 礼品列表 */
+.giftListView {
+  width: 100%;
+  bottom: 0;
+  top:5rpx;
+  position: absolute;
+
+}
+/* cell */
+.item {
+  width: 100%;
+  height:150rpx;
+  position: relative;
+ 
+}
+/* cell 产品图 */
+.iconImageView {
+  width: 200rpx;
+  height: 200rpx;
+  top: 50rpx;
+  left: 40rpx;
+  /* background-color:orange; */
+  position: absolute;
+}
+.timeview {
+  top:50rpx;
+  left:60rpx;
+  height: 50rpx;
+  width: 200rpx;
+  position: absolute;
+}
+.productNameText {
+  font-size: 70rpx;
+  display: flex;
+  color: white;
+}
+.switch {
+  top: 70rpx;
+  right: 30rpx;
+  height: 100rpx;
+  width: 150rpx;
+  position: absolute;
+}
+
+.circle-float{
+  color: #ffffff;
+  font-size: 70px;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 30rpx;
+  display: flex;
+  width: 120rpx;
+  height: 120rpx;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 50%;
+  left:315rpx;
+  background: #E8CC5E;
+}
+.buttonimage{
+  width: 100%;
+  height: 50%;
+}
+page {
+  background-color: #4a4a4a;
+}

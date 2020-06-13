@@ -1,0 +1,19 @@
+<!-- clock.wxml -->
+<view class='giftListView'>
+ <block wx:for="{{items}}"  data-item= "{{item}}" data-id="{{item.ID}}">
+ <!-- 每个cell -->
+  <view class='item' wx:key="{{item.ID}}"   >
+    <view class="timeview" bindtap='changeclockAction' data-item= "{{item}}" data-id="{{item.ID}}">
+    <text class='productNameText'>{{item.Time}}</text>
+    </view>
+
+<switch class="switch" color="#E8CC5E" checked="{{item.isOpen}}" data-item= "{{item}}" data-id="{{item.ID}}" bindchange="Change"/>
+
+  </view>
+ </block>
+
+ <button class="circle-float" bindtap="setclockAction"> 
+ <image class="buttonimage" src="/img/plus.png"></image>
+ </button>
+
+</view>

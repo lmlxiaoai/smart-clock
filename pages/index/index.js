@@ -4,13 +4,25 @@ const app = getApp()
 var mqtt = require('../../utils/mqtt.js');
 //一个全局变量...
 var client = null;
-
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    time:'20:20',
+    items: [
+      {"ID":'1',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'2',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'3',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'4',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'5',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'6',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'7',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'8',"Time":"12:13","isOpen":true,"type":"one"},
+      {"ID":'9',"Time":"12:13","isOpen":false,"type":"one"},
+      {"ID":'10',"Time":"12:13","isOpen":false,"type":"one"},
+      {"ID":'11',"Time":"12:13","isOpen":false,"type":"one"}], // 数据列表
   },
   //事件处理函数
   bindViewTap: function() {
@@ -19,6 +31,16 @@ Page({
     })
   },
   onLoad: function () {
+    console.log(app.globalData.client)
+    client = app.globalData.client
+    client.on('message', function (topic, message) {
+      //如果接受的消息是简单的字符串
+      console.log('received msg:' + message.toString());
+      //解析JSON数据的方法
+      console.log(JSON.parse(message.toString()).msg);
+    })
+    //this.connectMqtt();
+    /*
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -45,6 +67,7 @@ Page({
         }
       })
     }
+    */
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -54,40 +77,25 @@ Page({
       hasUserInfo: true
     })
   },
-  connectMqtt: function () {
-    const options = {
-      connectTimeout: 4000, // 超时时间
-      clientId: 'wx_' + parseInt(Math.random() * 100 + 800, 10),
-      port: 80,  //重点注意这个,坑了我很久
-      username: 'admin',
-      password: 'public',
-      reconnect: true,
-    }
-
-    client = mqtt.connect('wx://112.124.12.115/mqtt', options)
-    client.on('reconnect', (error) => {
-      console.log('正在重连:', error)
-    })
-
-    client.on('error', (error) => {
-      console.log('连接失败:', error)
-    })
-
-    let that = this;
-    client.on('connect', (e) => {
-      console.log('成功连接服务器')
-      　　　　　　　//订阅一个主题
-      client.subscribe('message.queue', {
-        qos: 0
-      }, function (err) {
-        if (!err) {
-          console.log("订阅成功")
-          client.publish('message.queue', 'Hello MQTT')
-        }
-      })
-    })
-    client.on('message', function (topic, message) {
-      console.log('received msg:' + message.toString());
+  setTimeAction: function(e) {
+    this.setData({
+      time: e.detail.value
     })
   },
+  Change: function(e) {
+    var data = e.currentTarget.dataset.item
+    var id = e.currentTarget.dataset.id
+    const items = this.data.items
+    for (let i = 0, len = items.length; i < len; ++i) {
+       if(items[i].ID === id){
+         items[i].isOpen = !items[i].isOpen
+       }
+    }
+    //向设备发送消息
+    client.publish('test','111')
+    this.setData({
+     items
+    })
+    console.log(this.data.items)
+  }
 })

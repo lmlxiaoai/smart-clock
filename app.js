@@ -32,8 +32,55 @@ App({
         }
       }
     })
+    this.connectMqtt();
+  },
+  connectMqtt: function () {
+    var mqtt=this.globalData.mqtt
+    var client = this.globalData.client
+    const options = {
+      connectTimeout: 4000, // 超时时间
+      clientId: 'wx_' + parseInt(Math.random() * 100 + 800, 10),
+      port: 80,  //重点注意这个,坑了我很久
+      username: 'admin',
+      password: 'public',
+      reconnect: true,
+    }
+
+    client = mqtt.connect('wx://112.124.12.115/mqtt', options)
+    client.on('reconnect', (error) => {
+      console.log('正在重连:', error)
+    })
+
+    client.on('error', (error) => {
+      console.log('连接失败:', error)
+    })
+
+    let that = this;
+    client.on('connect', (e) => {
+      console.log('成功连接服务器')
+      //订阅一个主题
+      client.subscribe('testtopic', {
+        qos: 0
+      }, function (err) {
+        if (!err) {
+          console.log("订阅成功")
+        }
+      })
+    })
+    this.globalData.client = client
+    /*
+    client.on('message', function (topic, message) {
+      //如果接受的消息是简单的字符串
+      console.log('received msg:' + message.toString());
+      //解析JSON数据的方法
+      console.log(JSON.parse(message.toString()).msg);
+    })
+    */
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    mqtt : require('/utils/mqtt.js'),
+//一个全局变量...
+    client : null
   }
 })
